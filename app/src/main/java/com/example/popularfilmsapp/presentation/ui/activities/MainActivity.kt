@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         (application as MainApplication).appComponent.inject(this)
 
-
-
         testList()
 
     }

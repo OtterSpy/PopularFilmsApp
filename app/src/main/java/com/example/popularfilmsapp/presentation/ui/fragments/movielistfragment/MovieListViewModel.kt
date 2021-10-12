@@ -1,9 +1,10 @@
-package com.example.popularfilmsapp.presentation.ui.fragments
+package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.popularfilmsapp.common.Constants
 import com.example.popularfilmsapp.common.Resource
 import com.example.popularfilmsapp.domain.model.MovieItem
 import com.example.popularfilmsapp.domain.usecases.GetMoviesListUseCase
@@ -18,7 +19,7 @@ class MovieListViewModel @Inject constructor(private val getMoviesListUseCase: G
     val movies: LiveData<Resource<List<MovieItem>>>
         get() = _movies
 
-    fun getMovies(apiKey: String, page: Int) {
+    fun getMovies(apiKey: String = Constants.API_KEY, page: Int) {
         _movies.value = Resource.loading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
