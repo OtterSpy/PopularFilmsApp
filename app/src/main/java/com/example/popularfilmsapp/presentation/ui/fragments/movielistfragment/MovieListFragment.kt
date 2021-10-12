@@ -40,7 +40,6 @@ class MovieListFragment : Fragment() {
         binding.moviesRecyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         binding.moviesRecyclerView.adapter = movieAdapter
 
-
         initObserver()
 
         initLoadProducts()
