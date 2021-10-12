@@ -1,5 +1,7 @@
 package com.example.popularfilmsapp.domain.usecases
 
+import android.provider.SyncStateContract
+import com.example.popularfilmsapp.common.Constants
 import com.example.popularfilmsapp.domain.model.MovieItem
 import com.example.popularfilmsapp.domain.repository.MovieRepository
 import javax.inject.Inject
