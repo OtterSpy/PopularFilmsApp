@@ -39,6 +39,6 @@ fun MovieItemDto.toMovieItem() =
         popularity.toString(),
         posterPath,
         releaseDate,
-        voteAverage,
+        voteAverage.toString(),
         title
     )
