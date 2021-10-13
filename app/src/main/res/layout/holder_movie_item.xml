@@ -7,26 +7,42 @@
         android:id="@+id/holder_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="@dimen/_15sdp"
-        android:padding="@dimen/_8sdp">
+        android:padding="@dimen/_8sdp"
+        app:cardCornerRadius="@dimen/_15sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/holder_image_view"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_150sdp"
+                android:layout_height="@dimen/_200sdp"
+                android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:scaleType="centerCrop"
                 tools:src="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/vote_average_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:textColor="@color/red"
+                android:elevation="@dimen/_10sdp"
+                android:textStyle="bold"
+                android:background="@drawable/vote_background"
+                app:layout_constraintEnd_toEndOf="@id/holder_image_view"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="10.0" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/holder_title_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="@dimen/_5sdp"
                 android:textAlignment="center"
                 android:textSize="16sp"
                 android:textStyle="bold"
