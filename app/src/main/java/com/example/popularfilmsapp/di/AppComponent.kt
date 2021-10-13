@@ -9,7 +9,7 @@ import javax.inject.Singleton
 @Component(modules = [NetworkModule::class, RepositoryModule::class, ViewModelsModule::class])
 interface AppComponent {
 
-     val factory: ViewModelFactory
+    val factory: ViewModelFactory
 
-     fun inject(activity: MainActivity)
+    fun inject(activity: MainActivity)
 }
