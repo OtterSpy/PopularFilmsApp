@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/drawable/vote_background.xml" value="0.2109375" />
         <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
+        <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/fragment_details_movie.xml" value="0.36666666666666664" />
         <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/fragment_movie_list.xml" value="0.36666666666666664" />
         <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/holder_movie_item.xml" value="0.67" />
         <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/holder_progress_item.xml" value="0.36666666666666664" />

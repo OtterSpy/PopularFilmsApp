@@ -17,6 +17,7 @@ import com.example.popularfilmsapp.presentation.helpers.GridSpacingItemDecoratio
 import com.example.popularfilmsapp.presentation.ui.MainApplication.Companion.getAppComponent
 import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapters.MovieListAdapter
 import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapters.MovieLoaderStateAdapter
+import com.google.android.material.snackbar.Snackbar
 
 class MovieListFragment : Fragment() {
 
@@ -46,8 +47,9 @@ class MovieListFragment : Fragment() {
         binding.moviesRecyclerView.adapter =
             movieAdapter.withLoadStateFooter(MovieLoaderStateAdapter())
         movieAdapter.addLoadStateListener { state: CombinedLoadStates ->
-            binding.moviesRecyclerView.isVisible = state.refresh != LoadState.Loading
-            binding.listProgressBar.isVisible = state.refresh == LoadState.Loading
+            val refreshState = state.refresh
+            binding.moviesRecyclerView.isVisible = refreshState != LoadState.Loading
+            binding.listProgressBar.isVisible = refreshState == LoadState.Loading
         }
 
         initObserver()

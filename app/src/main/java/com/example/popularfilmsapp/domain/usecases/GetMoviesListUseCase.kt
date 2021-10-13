@@ -8,6 +8,10 @@ class GetMoviesListUseCase @Inject constructor(
     private val repository: MovieRepository
 ) {
     suspend operator fun invoke(apiKey: String, page: Int): List<MovieItem> {
-        return repository.getMoviesList(apiKey, page).results
+        return try {
+            repository.getMoviesList(apiKey, page).results
+        } catch (e: Throwable) {
+            emptyList()
+        }
     }
 }
