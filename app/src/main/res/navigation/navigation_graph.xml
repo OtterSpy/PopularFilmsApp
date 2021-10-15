@@ -9,6 +9,19 @@
         android:id="@+id/movieListFragment"
         android:name="com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.MovieListFragment"
         android:label="MovieListFragment"
-        tools:layout="@layout/fragment_movie_list"/>
+        tools:layout="@layout/fragment_movie_list">
+        <action
+            android:id="@+id/action_movieListFragment_to_detailsMovieFragment"
+            app:destination="@id/detailsMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsMovieFragment"
+        android:name="com.example.popularfilmsapp.presentation.ui.fragments.detailsmoviefragment.DetailsMovieFragment"
+        android:label="DetailsMovieFragment"
+        tools:layout="@layout/fragment_details_movie">
+        <argument
+            android:name="movieItem"
+            app:argType="com.example.popularfilmsapp.domain.model.MovieItem" />
+    </fragment>
 
 </navigation>

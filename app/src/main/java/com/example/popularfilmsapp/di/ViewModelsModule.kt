@@ -1,6 +1,7 @@
 package com.example.popularfilmsapp.di
 
 import androidx.lifecycle.ViewModel
+import com.example.popularfilmsapp.presentation.ui.fragments.detailsmoviefragment.ActorsListViewModel
 import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.MovieListViewModel
 import dagger.Binds
 import dagger.Module
@@ -14,4 +15,7 @@ interface ViewModelsModule {
     @[IntoMap ClassKey(MovieListViewModel::class)]
     fun provideMovieListViewModel(movieListViewModel: MovieListViewModel): ViewModel
 
+    @Binds
+    @[IntoMap ClassKey(ActorsListViewModel::class)]
+    fun provideActorsListViewModel(actorsListViewModel: ActorsListViewModel): ViewModel
 }
