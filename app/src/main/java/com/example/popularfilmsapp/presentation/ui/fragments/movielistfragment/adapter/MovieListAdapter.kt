@@ -1,4 +1,4 @@
-package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapters
+package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter
 
 import android.app.Activity
 import android.view.LayoutInflater
@@ -8,12 +8,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.popularfilmsapp.databinding.HolderMovieItemBinding
 import com.example.popularfilmsapp.domain.model.MovieItem
-import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapters.holders.MovieViewHolder
-import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapters.holders.ProgressViewHolder
+import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.holders.MovieViewHolder
+import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.holders.ProgressViewHolder
 
 class MovieListAdapter(
     private val activity: Activity
 ) : PagingDataAdapter<MovieItem, RecyclerView.ViewHolder>(Companion) {
+
+    private var onItemClickListener: ((MovieItem) -> Unit)? = null
+
+    fun setOnItemClickListener(listener: (MovieItem) -> Unit) {
+        onItemClickListener = listener
+    }
 
     companion object : DiffUtil.ItemCallback<MovieItem>() {
         override fun areItemsTheSame(oldItem: MovieItem, newItem: MovieItem): Boolean {
@@ -38,8 +44,11 @@ class MovieListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is MovieViewHolder -> {
-                getItem(position)?.let { product ->
-                    holder.bind(product)
+                getItem(position)?.let { movieItem ->
+                    holder.bind(movieItem)
+                    holder.binding.holderCardView.setOnClickListener {
+                        onItemClickListener?.invoke(movieItem)
+                    }
                 }
             }
             is ProgressViewHolder -> {
@@ -47,5 +56,4 @@ class MovieListAdapter(
             }
         }
     }
-
 }

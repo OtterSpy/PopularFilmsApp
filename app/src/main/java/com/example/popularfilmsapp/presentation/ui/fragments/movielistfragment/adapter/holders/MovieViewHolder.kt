@@ -1,9 +1,12 @@
-package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapters.holders
+package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.holders
 
+import android.view.View
 import com.bumptech.glide.Glide
 import com.example.popularfilmsapp.common.Constants
 import com.example.popularfilmsapp.databinding.HolderMovieItemBinding
 import com.example.popularfilmsapp.domain.model.MovieItem
+import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.MovieListAdapter
+import java.util.*
 
 class MovieViewHolder(binding: HolderMovieItemBinding) :
     BaseViewHolder<HolderMovieItemBinding, MovieItem>(binding) {

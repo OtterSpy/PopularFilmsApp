@@ -1,4 +1,4 @@
-package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapters.holders
+package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.holders
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

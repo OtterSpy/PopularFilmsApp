@@ -1,11 +1,11 @@
-package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapters
+package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
-import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapters.holders.ProgressViewHolder
+import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.holders.ProgressViewHolder
 
 class MovieLoaderStateAdapter : LoadStateAdapter<ProgressViewHolder>() {
 
