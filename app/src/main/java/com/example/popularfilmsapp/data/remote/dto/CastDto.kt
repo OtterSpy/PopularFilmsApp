@@ -28,5 +28,6 @@ fun CastDto.toCast() =
         character,
         name,
         id,
-        profilePath
+        profilePath,
+        creditId
     )

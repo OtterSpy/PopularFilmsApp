@@ -1,6 +1,7 @@
 package com.example.popularfilmsapp.presentation.ui.fragments.detailsmoviefragment.adapter
 
 import android.view.LayoutInflater
+import android.view.OnReceiveContentListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -9,7 +10,12 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.popularfilmsapp.databinding.HolderActorsItemBinding
 import com.example.popularfilmsapp.presentation.ui.fragments.detailsmoviefragment.adapter.holders.ActorViewHolder
 
-class ActorsListAdapter() : ListAdapter<Cast, RecyclerView.ViewHolder>(Companion) {
+class ActorsListAdapter : ListAdapter<Cast, RecyclerView.ViewHolder>(Companion) {
+
+    private var onItemClickListener: ((Cast) -> Unit)? = null
+    fun setOnClickListener(listener: (Cast) -> Unit) {
+        onItemClickListener = listener
+    }
 
     companion object : DiffUtil.ItemCallback<Cast>() {
         override fun areItemsTheSame(oldItem: Cast, newItem: Cast): Boolean {
@@ -21,6 +27,7 @@ class ActorsListAdapter() : ListAdapter<Cast, RecyclerView.ViewHolder>(Companion
         }
 
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ActorViewHolder(
@@ -37,6 +44,9 @@ class ActorsListAdapter() : ListAdapter<Cast, RecyclerView.ViewHolder>(Companion
             is ActorViewHolder -> {
                 getItem(position).let { cast ->
                     holder.bind(cast)
+                    holder.binding.actorsCardView.setOnClickListener {
+                        onItemClickListener?.invoke(cast)
+                    }
                 }
             }
         }
