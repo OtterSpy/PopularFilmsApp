@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ScrollView
             android:id="@+id/details_scroll_view"
@@ -19,11 +19,12 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/details_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/_350sdp"
-                    android:scaleType="centerCrop"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/details_title_text_view"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -51,18 +52,19 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/details_image_view"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/details_image_view"
                     tools:text="TitleText" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/details_release_date_text_view"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="@dimen/_6sdp"
+                    android:padding="@dimen/_6sdp"
                     android:textSize="16sp"
                     app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/details_title_text_view"
+                    app:layout_constraintTop_toBottomOf="@id/details_image_view"
                     tools:text="ReleaseDate" />
 
                 <androidx.appcompat.widget.AppCompatTextView
@@ -106,7 +108,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="@dimen/_6sdp"
+                    android:paddingBottom="@dimen/_6sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:textSize="16sp"
                     app:layout_constraintTop_toBottomOf="@id/details_overview_title_text_view"
                     tools:text="overview_text" />
 
