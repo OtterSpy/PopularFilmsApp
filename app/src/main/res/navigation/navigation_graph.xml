@@ -22,6 +22,18 @@
         <argument
             android:name="movieItem"
             app:argType="com.example.popularfilmsapp.domain.model.MovieItem" />
+        <action
+            android:id="@+id/action_detailsMovieFragment_to_detailsActorFragment"
+            app:destination="@id/detailsActorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsActorFragment"
+        android:name="com.example.popularfilmsapp.presentation.ui.fragments.detailsactorfragment.DetailsActorFragment"
+        android:label="fragment_details_actor"
+        tools:layout="@layout/fragment_details_actor">
+        <argument
+            android:name="actorItem"
+            app:argType="com.example.popularfilmsapp.domain.model.Cast"/>
     </fragment>
 
 </navigation>

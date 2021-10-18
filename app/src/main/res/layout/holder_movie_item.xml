@@ -7,6 +7,7 @@
         android:id="@+id/holder_card_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
         android:padding="@dimen/_8sdp"
         app:cardCornerRadius="@dimen/_15sdp">
 

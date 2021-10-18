@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.popularfilmsapp.R
@@ -45,7 +46,6 @@ class DetailsMovieFragment : Fragment() {
                 append(Constants.BASE_IMAGE_URL)
                 append(args.movieItem.backdropPath)
             })
-            .centerCrop()
             .into(binding.detailsImageView)
 
         binding.detailsTitleTextView.text = args.movieItem.title
@@ -54,6 +54,14 @@ class DetailsMovieFragment : Fragment() {
         binding.detailsReleaseDateTextView.text = buildString {
             append("Release date: ")
             append(args.movieItem.releaseDate)
+        }
+
+        actorsAdapter.setOnClickListener { cast ->
+            findNavController().navigate(
+                DetailsMovieFragmentDirections.actionDetailsMovieFragmentToDetailsActorFragment(
+                    cast
+                )
+            )
         }
 
         binding.detailsActorsRecyclerView.adapter = actorsAdapter

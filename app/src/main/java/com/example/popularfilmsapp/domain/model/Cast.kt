@@ -8,5 +8,7 @@ data class Cast(
     val name: String,
     val id: Int,
     @SerializedName("profile_path")
-    val profilePath: String
+    val profilePath: String,
+    @SerializedName("credit_id")
+    val creditId: String
 ) : Serializable

@@ -2,6 +2,8 @@ package com.example.popularfilmsapp.data.repository
 
 import com.example.popularfilmsapp.data.remote.TheMovieDbApi
 import com.example.popularfilmsapp.data.remote.dto.*
+import com.example.popularfilmsapp.domain.model.ActorDetails
+import com.example.popularfilmsapp.domain.model.ActorMoviesList
 import com.example.popularfilmsapp.domain.model.ActorsList
 import com.example.popularfilmsapp.domain.model.MovieList
 import com.example.popularfilmsapp.domain.repository.MovieRepository
@@ -16,4 +18,11 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getActorsList(movieId: Int, apiKey: String): ActorsList =
         theMovieDbApi.getActorsList(movieId, apiKey).toActorsList()
+
+    override suspend fun getActorMoviesList(personId: Int, apiKey: String): ActorMoviesList =
+        theMovieDbApi.getActorMovieList(personId, apiKey).toActorMoviesList()
+
+    override suspend fun getActorDetails(personId: Int, apiKey: String): ActorDetails =
+        theMovieDbApi.getActorDetails(personId, apiKey).toActorDetails()
+
 }
