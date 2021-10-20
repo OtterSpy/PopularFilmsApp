@@ -4,9 +4,6 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class MovieItem(
-    val adult: Boolean,
-    @SerializedName("backdrop_path")
-    val backdropPath: String,
     val id: Int,
     @SerializedName("original_language")
     val originalLanguage: String,
@@ -15,9 +12,9 @@ data class MovieItem(
     val overview: String,
     val popularity: String,
     @SerializedName("poster_path")
-    val posterPath: String,
+    val posterPath: String?,
     @SerializedName("release_date")
-    val releaseDate: String,
+    val releaseDate: String?,
     @SerializedName("vote_average")
     val voteAverage: String,
     val title: String

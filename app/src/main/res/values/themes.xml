@@ -11,6 +11,14 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="fontFamily">@font/fredoka_one</item>
         <!-- Customize your theme here. -->
+    </style>
+    <style name="MyRatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@android:color/holo_green_light</item>
+        <item name="colorControlActivated">@android:color/holo_orange_dark</item>
+    </style>
+    <style name="SearchStyle" parent="Theme.AppCompat">
+        <item name="android:elevation">0dp</item>
     </style>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.popularfilmsapp.R
 import com.example.popularfilmsapp.common.Util.getDp
 import com.example.popularfilmsapp.databinding.FragmentMovieListBinding
 import com.example.popularfilmsapp.presentation.helpers.GridSpacingItemDecoration
@@ -33,6 +35,9 @@ class MovieListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        requireActivity().title = this.resources.getText(R.string.app_name)
+
         _binding = FragmentMovieListBinding.inflate(inflater, container, false)
         binding.moviesRecyclerView.addItemDecoration(
             GridSpacingItemDecoration(
@@ -42,12 +47,19 @@ class MovieListFragment : Fragment() {
             )
         )
 
+        Log.d("QQQ", "onCreateView: ${binding.searchEditText.text.toString()}")
+
         movieAdapter.setOnItemClickListener { movieItem ->
             findNavController().navigate(
                 MovieListFragmentDirections.actionMovieListFragmentToDetailsMovieFragment(
                     movieItem
                 )
             )
+        }
+
+        binding.searchImageButton.setOnClickListener {
+            initLoadMovies()
+            initObserver()
         }
 
         binding.moviesRecyclerView.layoutManager =
@@ -60,6 +72,8 @@ class MovieListFragment : Fragment() {
             binding.listProgressBar.isVisible = refreshState == LoadState.Loading
         }
 
+        initLoadMovies()
+
         initObserver()
 
         return binding.root
@@ -71,13 +85,16 @@ class MovieListFragment : Fragment() {
         })
     }
 
-//    private fun initLoadProducts() {
-//        viewModel.getMovies(page = 1)
-//    }
+    private fun initLoadMovies() {
+        if (viewModel.query == "" || binding.searchEditText.text.toString() != "") {
+            viewModel.query = binding.searchEditText.text.toString()
+        }
+        Log.d("query", "initLoadMovies: query != ${binding.searchEditText.text}")
+        viewModel.setQuery()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 }

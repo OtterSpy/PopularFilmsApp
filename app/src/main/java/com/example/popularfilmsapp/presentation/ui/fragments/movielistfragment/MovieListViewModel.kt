@@ -1,11 +1,12 @@
 package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment
 
+import android.app.DownloadManager
+import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.cachedIn
-import androidx.paging.liveData
+import androidx.paging.*
+import com.example.popularfilmsapp.domain.model.MovieItem
 import com.example.popularfilmsapp.presentation.helpers.paging.MoviePagingSource
 import javax.inject.Inject
 
@@ -16,10 +17,16 @@ class MovieListViewModel @Inject constructor(private val moviePagingSource: Movi
     val moviess: LiveData<Resource<PagingData<MovieItem>>>
         get() = _movies*/
 
-    val movies = Pager(PagingConfig(pageSize = 20)) {
-        moviePagingSource
-    }.liveData.cachedIn(viewModelScope)
+    lateinit var movies: LiveData<PagingData<MovieItem>>
+    var query: String = ""
 
+    fun setQuery() {
+        Log.d("query", "setQuery: $query")
+        moviePagingSource.query = query
+        movies = Pager(PagingConfig(pageSize = 20)) {
+            moviePagingSource
+        }.liveData.cachedIn(viewModelScope)
+    }
     /*fun getMovies(page: Int) {
         _movies.value = Resource.loading()
         viewModelScope.launch(Dispatchers.IO) {
@@ -34,8 +41,6 @@ class MovieListViewModel @Inject constructor(private val moviePagingSource: Movi
                 )
             }
         }
-
-
     }*/
 
 }

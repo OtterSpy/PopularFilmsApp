@@ -30,8 +30,6 @@ data class MovieItemDto(
 
 fun MovieItemDto.toMovieItem() =
     MovieItem(
-        adult,
-        backdropPath,
         id,
         originalLanguage,
         originalTitle,

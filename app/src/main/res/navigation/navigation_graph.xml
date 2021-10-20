@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_movie_list">
         <action
             android:id="@+id/action_movieListFragment_to_detailsMovieFragment"
-            app:destination="@id/detailsMovieFragment" />
+            app:destination="@id/detailsMovieFragment"/>
     </fragment>
     <fragment
         android:id="@+id/detailsMovieFragment"
@@ -34,6 +34,9 @@
         <argument
             android:name="actorItem"
             app:argType="com.example.popularfilmsapp.domain.model.Cast"/>
+        <action
+            android:id="@+id/action_detailsActorFragment_to_detailsMovieFragment"
+            app:destination="@id/detailsMovieFragment" />
     </fragment>
 
 </navigation>
