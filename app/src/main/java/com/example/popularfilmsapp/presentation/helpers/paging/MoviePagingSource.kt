@@ -11,6 +11,7 @@ import javax.inject.Inject
 class MoviePagingSource @Inject constructor(
     private val getMoviesListUseCase: GetMoviesListUseCase
 ) : PagingSource<Int, MovieItem>() {
+    lateinit var query: String
     override fun getRefreshKey(state: PagingState<Int, MovieItem>): Int? {
         val anchorPosition = state.anchorPosition ?: return null
         val page = state.closestPageToPosition(anchorPosition) ?: return null
@@ -20,7 +21,7 @@ class MoviePagingSource @Inject constructor(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, MovieItem> {
         val page = params.key ?: 1
 
-        val movies = getMoviesListUseCase(Constants.API_KEY, page)
+        val movies = getMoviesListUseCase(Constants.API_KEY, query, page)
 
         val nextKey = page + 1
         val prevKey = if (page == 1) null else page - 1

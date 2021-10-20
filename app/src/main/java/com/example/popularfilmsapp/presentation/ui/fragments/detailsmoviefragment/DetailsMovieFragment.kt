@@ -1,11 +1,15 @@
 package com.example.popularfilmsapp.presentation.ui.fragments.detailsmoviefragment
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
@@ -18,6 +22,10 @@ import com.example.popularfilmsapp.databinding.FragmentDetailsMovieBinding
 import com.example.popularfilmsapp.databinding.FragmentMovieListBinding
 import com.example.popularfilmsapp.presentation.ui.MainApplication.Companion.getAppComponent
 import com.example.popularfilmsapp.presentation.ui.fragments.detailsmoviefragment.adapter.ActorsListAdapter
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 class DetailsMovieFragment : Fragment() {
 
@@ -32,10 +40,14 @@ class DetailsMovieFragment : Fragment() {
         requireActivity().getAppComponent().factory
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        requireActivity().title = args.movieItem.title
+
         _binding = FragmentDetailsMovieBinding.inflate(inflater, container, false)
 
         getDataList()
@@ -44,18 +56,27 @@ class DetailsMovieFragment : Fragment() {
         Glide.with(this)
             .load(buildString {
                 append(Constants.BASE_IMAGE_URL)
-                append(args.movieItem.backdropPath)
+                append(args.movieItem.posterPath)
             })
             .into(binding.detailsImageView)
 
         binding.detailsTitleTextView.text = args.movieItem.title
         binding.detailsOverviewContentTextView.text = args.movieItem.overview
-        binding.detailsVoteTextView.text = args.movieItem.voteAverage
-        binding.detailsReleaseDateTextView.text = buildString {
-            append("Release date: ")
-            append(args.movieItem.releaseDate)
+
+        if (args.movieItem.releaseDate != null && args.movieItem.releaseDate != "") {
+            val date = LocalDate.parse(args.movieItem.releaseDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+            binding.detailsReleaseDateTextView.text = date.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+        } else {
+            binding.detailsReleaseDateTextView.text = buildString { append("No Data") }
         }
 
+        with(binding.movieRatingBar) {
+            stepSize = 0.1f
+            numStars = 10
+            rating = args.movieItem.voteAverage.toFloat()
+
+            Log.d("TAG", "onCreateView: ${args.movieItem.voteAverage} $rating")
+        }
         actorsAdapter.setOnClickListener { cast ->
             findNavController().navigate(
                 DetailsMovieFragmentDirections.actionDetailsMovieFragmentToDetailsActorFragment(
@@ -92,6 +113,11 @@ class DetailsMovieFragment : Fragment() {
     private fun getDataList() {
         viewModel.getActors(args.movieItem.id, Constants.API_KEY)
         Log.d("myLogs", "getDataList: ${args.movieItem.id}")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }

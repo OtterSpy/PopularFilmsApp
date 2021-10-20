@@ -25,4 +25,7 @@ class MovieRepositoryImpl @Inject constructor(
     override suspend fun getActorDetails(personId: Int, apiKey: String): ActorDetails =
         theMovieDbApi.getActorDetails(personId, apiKey).toActorDetails()
 
+    override suspend fun getSearchList(query: String, apiKey: String, page: Int): MovieList =
+        theMovieDbApi.getSearchList(query, apiKey, page).toMovieList()
+
 }

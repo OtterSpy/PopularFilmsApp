@@ -34,4 +34,11 @@ interface TheMovieDbApi {
         @Query("api_key") apiKey: String
     ): ActorDetailsDto
 
+    @GET("search/movie")
+    suspend fun getSearchList(
+        @Query("query") query: String,
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int,
+    ): MovieListDto
+
 }
