@@ -4,11 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/drawable/ic_actor_place_holder_image.xml" value="0.3828125" />
+        <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/drawable/ic_baseline_no_photography_24.xml" value="0.2046875" />
+        <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.228125" />
+        <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/drawable/search_background.xml" value="0.2046875" />
         <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/drawable/vote_background.xml" value="0.2109375" />
         <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/fragment_details_actor.xml" value="0.36666666666666664" />
-        <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/fragment_details_movie.xml" value="0.33" />
-        <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/fragment_movie_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/fragment_details_actor.xml" value="0.504881450488145" />
+        <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/fragment_details_movie.xml" value="0.3019182652210175" />
+        <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/fragment_movie_list.xml" value="0.449119373776908" />
+        <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/holder_acting.xml" value="0.33" />
         <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/holder_actors_item.xml" value="0.36666666666666664" />
         <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/holder_movie_item.xml" value="0.636237897648686" />
         <entry key="..\:/nasonprojects/PopularFilmsApp/app/src/main/res/layout/holder_progress_item.xml" value="0.36666666666666664" />

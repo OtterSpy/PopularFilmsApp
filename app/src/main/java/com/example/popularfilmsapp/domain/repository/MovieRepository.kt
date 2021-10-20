@@ -4,6 +4,7 @@ import com.example.popularfilmsapp.domain.model.ActorDetails
 import com.example.popularfilmsapp.domain.model.ActorMoviesList
 import com.example.popularfilmsapp.domain.model.ActorsList
 import com.example.popularfilmsapp.domain.model.MovieList
+import retrofit2.http.Query
 
 interface MovieRepository {
 
@@ -14,5 +15,7 @@ interface MovieRepository {
     suspend fun getActorMoviesList(personId: Int, apiKey: String): ActorMoviesList
 
     suspend fun getActorDetails(personId: Int, apiKey: String): ActorDetails
+
+    suspend fun getSearchList(query: String, apiKey: String, page: Int): MovieList
 
 }

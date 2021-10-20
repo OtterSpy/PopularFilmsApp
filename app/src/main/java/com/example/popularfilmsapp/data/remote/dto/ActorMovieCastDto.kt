@@ -1,11 +1,13 @@
 package com.example.popularfilmsapp.data.remote.dto
 
+import com.example.popularfilmsapp.domain.model.ActorMovieCast
+import com.example.popularfilmsapp.domain.model.MovieItem
 import com.google.gson.annotations.SerializedName
 
 data class ActorMovieCastDto(
     val adult: Boolean,
     @SerializedName("backdrop_path")
-    val backdropPath: Any,
+    val backdropPath: String,
     val character: String,
     @SerializedName("credit_id")
     val creditId: String,
@@ -30,3 +32,18 @@ data class ActorMovieCastDto(
     @SerializedName("vote_count")
     val voteCount: Int
 )
+
+fun ActorMovieCastDto.toActorMovieCast() =
+    ActorMovieCast(
+        backdropPath,
+        id,
+        originalLanguage,
+        originalTitle,
+        character,
+        overview,
+        popularity,
+        posterPath,
+        releaseDate,
+        title,
+        voteAverage.toString()
+    )

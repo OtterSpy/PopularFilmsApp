@@ -1,7 +1,9 @@
 package com.example.popularfilmsapp.presentation.ui.activities
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import com.example.popularfilmsapp.R
 import com.example.popularfilmsapp.domain.usecases.GetMoviesListUseCase
 import com.example.popularfilmsapp.presentation.ui.MainApplication

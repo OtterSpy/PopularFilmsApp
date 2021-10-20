@@ -5,4 +5,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="overview_text">Overview:</string>
     <string name="actors_text">Actors:</string>
+    <string name="biography_text">Biography:</string>
+    <string name="acting_text">Acting:</string>
+    <string name="search_text">Search</string>
 </resources>
