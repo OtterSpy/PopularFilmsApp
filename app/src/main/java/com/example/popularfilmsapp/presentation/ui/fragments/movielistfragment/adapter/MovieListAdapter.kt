@@ -1,7 +1,6 @@
 package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter
 
 import android.app.Activity
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
