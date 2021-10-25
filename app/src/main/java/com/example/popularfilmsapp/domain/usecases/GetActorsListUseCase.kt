@@ -1,7 +1,6 @@
 package com.example.popularfilmsapp.domain.usecases
 
 import android.util.Log
-import com.example.popularfilmsapp.data.remote.dto.CastDto
 import com.example.popularfilmsapp.domain.model.Cast
 import com.example.popularfilmsapp.domain.repository.MovieRepository
 import javax.inject.Inject

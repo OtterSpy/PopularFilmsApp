@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.popularfilmsapp.common.Resource
-import com.example.popularfilmsapp.data.remote.dto.CastDto
 import com.example.popularfilmsapp.domain.model.Cast
 import com.example.popularfilmsapp.domain.usecases.GetActorsListUseCase
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +13,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class ActorsListViewModel @Inject constructor(
-    val getActorsListUseCase: GetActorsListUseCase) : ViewModel() {
+    val getActorsListUseCase: GetActorsListUseCase
+) : ViewModel() {
 
     private val _actors = MutableLiveData<Resource<List<Cast>>>()
     val actors: LiveData<Resource<List<Cast>>>

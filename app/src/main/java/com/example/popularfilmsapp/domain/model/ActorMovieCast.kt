@@ -32,6 +32,6 @@ fun ActorMovieCast.toMovieItem() =
         popularity.toString(),
         posterPath,
         releaseDate,
-        voteAverage.toString(),
+        voteAverage,
         title
     )

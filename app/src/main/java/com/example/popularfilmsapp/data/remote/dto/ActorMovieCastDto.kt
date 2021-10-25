@@ -1,7 +1,6 @@
 package com.example.popularfilmsapp.data.remote.dto
 
 import com.example.popularfilmsapp.domain.model.ActorMovieCast
-import com.example.popularfilmsapp.domain.model.MovieItem
 import com.google.gson.annotations.SerializedName
 
 data class ActorMovieCastDto(

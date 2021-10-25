@@ -24,8 +24,18 @@ class ActorDetailsViewModel @Inject constructor(
         _actorDetails.value = Resource.loading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                _actorDetails.postValue(Resource.success(getActorDetailsUseCase(personId, Constants.API_KEY)))
-                Log.d("myLogs", "getActorDetails: ${getActorDetailsUseCase(personId, Constants.API_KEY)}")
+                _actorDetails.postValue(
+                    Resource.success(
+                        getActorDetailsUseCase(
+                            personId,
+                            Constants.API_KEY
+                        )
+                    )
+                )
+                Log.d(
+                    "myLogs",
+                    "getActorDetails: ${getActorDetailsUseCase(personId, Constants.API_KEY)}"
+                )
             } catch (t: Throwable) {
                 Log.d("myLogs", "getActorDetails: $t")
                 _actorDetails.postValue(

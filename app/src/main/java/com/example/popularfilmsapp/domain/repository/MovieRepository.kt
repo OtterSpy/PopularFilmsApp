@@ -4,7 +4,6 @@ import com.example.popularfilmsapp.domain.model.ActorDetails
 import com.example.popularfilmsapp.domain.model.ActorMoviesList
 import com.example.popularfilmsapp.domain.model.ActorsList
 import com.example.popularfilmsapp.domain.model.MovieList
-import retrofit2.http.Query
 
 interface MovieRepository {
 

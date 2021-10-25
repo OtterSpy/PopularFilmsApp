@@ -1,13 +1,12 @@
 package com.example.popularfilmsapp.presentation.ui.fragments.detailsmoviefragment.adapter
 
 import android.view.LayoutInflater
-import android.view.OnReceiveContentListener
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
-import com.example.popularfilmsapp.domain.model.Cast
 import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
 import com.example.popularfilmsapp.databinding.HolderActorsItemBinding
+import com.example.popularfilmsapp.domain.model.Cast
 import com.example.popularfilmsapp.presentation.ui.fragments.detailsmoviefragment.adapter.holders.ActorViewHolder
 
 class ActorsListAdapter : ListAdapter<Cast, RecyclerView.ViewHolder>(Companion) {
@@ -27,7 +26,6 @@ class ActorsListAdapter : ListAdapter<Cast, RecyclerView.ViewHolder>(Companion) 
         }
 
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ActorViewHolder(

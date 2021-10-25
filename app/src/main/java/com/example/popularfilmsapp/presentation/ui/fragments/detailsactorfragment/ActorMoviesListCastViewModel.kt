@@ -24,8 +24,18 @@ class ActorMoviesListCastViewModel @Inject constructor(
         _actorFilms.value = Resource.loading()
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                _actorFilms.postValue(Resource.success(getActorMoviesListUseCase(personId, Constants.API_KEY)))
-                Log.d("myLogs", "getActorFilms: ${getActorMoviesListUseCase(personId, Constants.API_KEY)}")
+                _actorFilms.postValue(
+                    Resource.success(
+                        getActorMoviesListUseCase(
+                            personId,
+                            Constants.API_KEY
+                        )
+                    )
+                )
+                Log.d(
+                    "myLogs",
+                    "getActorFilms: ${getActorMoviesListUseCase(personId, Constants.API_KEY)}"
+                )
             } catch (t: Throwable) {
                 _actorFilms.postValue(
                     Resource.error(
