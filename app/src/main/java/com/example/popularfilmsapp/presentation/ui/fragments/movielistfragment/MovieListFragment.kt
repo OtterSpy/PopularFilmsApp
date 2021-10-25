@@ -1,13 +1,17 @@
 package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
@@ -19,6 +23,8 @@ import com.example.popularfilmsapp.presentation.helpers.GridSpacingItemDecoratio
 import com.example.popularfilmsapp.presentation.ui.MainApplication.Companion.getAppComponent
 import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.MovieListAdapter
 import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.MovieLoaderStateAdapter
+import kotlinx.coroutines.flow.collectLatest
+import java.util.*
 
 class MovieListFragment : Fragment() {
 
@@ -39,6 +45,29 @@ class MovieListFragment : Fragment() {
         requireActivity().title = this.resources.getText(R.string.app_name)
 
         _binding = FragmentMovieListBinding.inflate(inflater, container, false)
+
+        initLoadMovies()
+
+        initObserver()
+
+        setDataToView()
+
+        return binding.root
+    }
+
+    private fun initObserver() {
+        lifecycleScope.launchWhenStarted {
+            viewModel.movies.collectLatest {
+                movieAdapter.submitData(it)
+            }
+        }
+    }
+
+    private fun initLoadMovies() {
+        viewModel.setQuery(binding.searchEditText.text.toString())
+    }
+
+    private fun setDataToView() {
         binding.moviesRecyclerView.addItemDecoration(
             GridSpacingItemDecoration(
                 2,
@@ -46,8 +75,6 @@ class MovieListFragment : Fragment() {
                 true
             )
         )
-
-        Log.d("QQQ", "onCreateView: ${binding.searchEditText.text.toString()}")
 
         movieAdapter.setOnItemClickListener { movieItem ->
             findNavController().navigate(
@@ -57,9 +84,30 @@ class MovieListFragment : Fragment() {
             )
         }
 
-        binding.searchImageButton.setOnClickListener {
-            initLoadMovies()
-            initObserver()
+        with(binding.searchEditText) {
+            var timer = Timer()
+            setOnEditorActionListener { _, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    initLoadMovies()
+                }
+                false
+            }
+
+            addTextChangedListener {
+                doAfterTextChanged {
+                    timer = Timer()
+                    timer.schedule(object : TimerTask() {
+                        override fun run() {
+                            initLoadMovies()
+                            initObserver()
+                        }
+                    }, 2000)
+                }
+                doOnTextChanged { _, _, _, _ ->
+                    timer.cancel()
+                    timer.purge()
+                }
+            }
         }
 
         binding.moviesRecyclerView.layoutManager =
@@ -72,25 +120,6 @@ class MovieListFragment : Fragment() {
             binding.listProgressBar.isVisible = refreshState == LoadState.Loading
         }
 
-        initLoadMovies()
-
-        initObserver()
-
-        return binding.root
-    }
-
-    private fun initObserver() {
-        viewModel.movies.observe(viewLifecycleOwner, { resources ->
-            movieAdapter.submitData(lifecycle, resources)
-        })
-    }
-
-    private fun initLoadMovies() {
-        if (viewModel.query == "" || binding.searchEditText.text.toString() != "") {
-            viewModel.query = binding.searchEditText.text.toString()
-        }
-        Log.d("query", "initLoadMovies: query != ${binding.searchEditText.text}")
-        viewModel.setQuery()
     }
 
     override fun onDestroyView() {

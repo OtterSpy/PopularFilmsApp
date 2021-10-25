@@ -10,8 +10,6 @@ import com.example.popularfilmsapp.common.Constants
 import com.example.popularfilmsapp.databinding.HolderActingBinding
 import com.example.popularfilmsapp.domain.model.ActorMovieCast
 import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.holders.BaseViewHolder
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 class ActorCastViewHolder(binding: HolderActingBinding) :
     BaseViewHolder<HolderActingBinding, ActorMovieCast>(binding) {

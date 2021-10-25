@@ -1,7 +1,10 @@
 package com.example.popularfilmsapp.data.repository
 
 import com.example.popularfilmsapp.data.remote.TheMovieDbApi
-import com.example.popularfilmsapp.data.remote.dto.*
+import com.example.popularfilmsapp.data.remote.dto.toActorDetails
+import com.example.popularfilmsapp.data.remote.dto.toActorMoviesList
+import com.example.popularfilmsapp.data.remote.dto.toActorsList
+import com.example.popularfilmsapp.data.remote.dto.toMovieList
 import com.example.popularfilmsapp.domain.model.ActorDetails
 import com.example.popularfilmsapp.domain.model.ActorMoviesList
 import com.example.popularfilmsapp.domain.model.ActorsList

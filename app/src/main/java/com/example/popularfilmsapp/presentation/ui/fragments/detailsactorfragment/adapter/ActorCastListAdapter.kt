@@ -9,7 +9,7 @@ import com.example.popularfilmsapp.databinding.HolderActingBinding
 import com.example.popularfilmsapp.domain.model.ActorMovieCast
 import com.example.popularfilmsapp.presentation.ui.fragments.detailsactorfragment.adapter.holders.ActorCastViewHolder
 
-class ActorCastListAdapter: ListAdapter<ActorMovieCast, RecyclerView.ViewHolder>(Companion) {
+class ActorCastListAdapter : ListAdapter<ActorMovieCast, RecyclerView.ViewHolder>(Companion) {
 
     private var onItemClickListener: ((ActorMovieCast) -> Unit)? = null
     fun setOnClickListener(listener: (ActorMovieCast) -> Unit) {
@@ -37,7 +37,7 @@ class ActorCastListAdapter: ListAdapter<ActorMovieCast, RecyclerView.ViewHolder>
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder) {
+        when (holder) {
             is ActorCastViewHolder -> {
                 getItem(position).let { movieCast ->
                     holder.bind(movieCast)

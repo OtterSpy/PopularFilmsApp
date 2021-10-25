@@ -3,12 +3,12 @@ package com.example.popularfilmsapp.presentation.ui.fragments.detailsactorfragme
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.core.text.bold
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -21,7 +21,6 @@ import com.example.popularfilmsapp.domain.model.ActorDetails
 import com.example.popularfilmsapp.domain.model.toMovieItem
 import com.example.popularfilmsapp.presentation.ui.MainApplication.Companion.getAppComponent
 import com.example.popularfilmsapp.presentation.ui.fragments.detailsactorfragment.adapter.ActorCastListAdapter
-import com.example.popularfilmsapp.presentation.ui.fragments.detailsmoviefragment.DetailsMovieFragmentDirections
 
 class DetailsActorFragment : Fragment() {
 
@@ -54,7 +53,9 @@ class DetailsActorFragment : Fragment() {
 
         actorCastAdapter.setOnClickListener { actorMovieCast ->
             findNavController().navigate(
-                DetailsActorFragmentDirections.actionDetailsActorFragmentToDetailsMovieFragment(actorMovieCast.toMovieItem())
+                DetailsActorFragmentDirections.actionDetailsActorFragmentToDetailsMovieFragment(
+                    actorMovieCast.toMovieItem()
+                )
             )
         }
 
@@ -65,7 +66,7 @@ class DetailsActorFragment : Fragment() {
 
     private fun initObserver() {
         viewModelMoviesList.actorFilms.observe(viewLifecycleOwner, { movies ->
-            when(movies) {
+            when (movies) {
                 is Resource.Failure -> {
                     Log.d("myLogs", "initObserverFailure: ")
                 }
@@ -79,7 +80,7 @@ class DetailsActorFragment : Fragment() {
             }
         })
         viewModelActorDetails.actorDetails.observe(viewLifecycleOwner, { actor ->
-            when(actor) {
+            when (actor) {
                 is Resource.Failure -> {
                     Log.d("myLogs", "initObserverFailureActor: ")
                 }
@@ -126,7 +127,7 @@ class DetailsActorFragment : Fragment() {
                 append("Known For: ")
             }
             .append(actor.knownForDepartment)
-        if(actor.placeOfBirth != null) {
+        if (actor.placeOfBirth != null) {
             binding.placeOfBirthTextView.text = SpannableStringBuilder()
                 .bold {
                     append("Place of Birthday: ")
