@@ -1,6 +1,5 @@
 package com.example.popularfilmsapp.presentation.ui.fragments.detailsactorfragment
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,12 +31,7 @@ class ActorDetailsViewModel @Inject constructor(
                         )
                     )
                 )
-                Log.d(
-                    "myLogs",
-                    "getActorDetails: ${getActorDetailsUseCase(personId, Constants.API_KEY)}"
-                )
             } catch (t: Throwable) {
-                Log.d("myLogs", "getActorDetails: $t")
                 _actorDetails.postValue(
                     Resource.error(
                         t.localizedMessage ?: "Unknown error"

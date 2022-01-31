@@ -43,7 +43,9 @@
                         android:paddingVertical="@dimen/_8sdp"
                         android:textColor="@color/edit_text_color" />
                 </LinearLayout>
+
             </com.google.android.material.appbar.CollapsingToolbarLayout>
+
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -7,11 +7,8 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
-import androidx.core.widget.doAfterTextChanged
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.CombinedLoadStates
 import androidx.paging.LoadState
@@ -23,15 +20,13 @@ import com.example.popularfilmsapp.presentation.helpers.GridSpacingItemDecoratio
 import com.example.popularfilmsapp.presentation.ui.MainApplication.Companion.getAppComponent
 import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.MovieListAdapter
 import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.MovieLoaderStateAdapter
-import kotlinx.coroutines.flow.collectLatest
-import java.util.*
 
 class MovieListFragment : Fragment() {
 
     private var _binding: FragmentMovieListBinding? = null
     private val binding get() = _binding!!
 
-    private val movieAdapter by lazy { MovieListAdapter(requireActivity()) }
+    private val movieAdapter by lazy { MovieListAdapter() }
 
     private val viewModel: MovieListViewModel by viewModels {
         requireActivity().getAppComponent().factory
@@ -46,7 +41,7 @@ class MovieListFragment : Fragment() {
 
         _binding = FragmentMovieListBinding.inflate(inflater, container, false)
 
-        initLoadMovies()
+        initLoadMovies("")
 
         initObserver()
 
@@ -56,15 +51,13 @@ class MovieListFragment : Fragment() {
     }
 
     private fun initObserver() {
-        lifecycleScope.launchWhenStarted {
-            viewModel.movies.collectLatest {
-                movieAdapter.submitData(it)
-            }
-        }
+        viewModel.movies.observe(viewLifecycleOwner, {
+            movieAdapter.submitData(lifecycle, it)
+        })
     }
 
-    private fun initLoadMovies() {
-        viewModel.setQuery(binding.searchEditText.text.toString())
+    private fun initLoadMovies(query: String) {
+        viewModel.passQuery(query)
     }
 
     private fun setDataToView() {
@@ -85,28 +78,15 @@ class MovieListFragment : Fragment() {
         }
 
         with(binding.searchEditText) {
-            var timer = Timer()
             setOnEditorActionListener { _, actionId, _ ->
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    initLoadMovies()
+                    initLoadMovies(binding.searchEditText.text.toString())
                 }
                 false
             }
 
             addTextChangedListener {
-                doAfterTextChanged {
-                    timer = Timer()
-                    timer.schedule(object : TimerTask() {
-                        override fun run() {
-                            initLoadMovies()
-                            initObserver()
-                        }
-                    }, 2000)
-                }
-                doOnTextChanged { _, _, _, _ ->
-                    timer.cancel()
-                    timer.purge()
-                }
+                initLoadMovies(it.toString())
             }
         }
 
@@ -122,8 +102,8 @@ class MovieListFragment : Fragment() {
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         _binding = null
     }
 }

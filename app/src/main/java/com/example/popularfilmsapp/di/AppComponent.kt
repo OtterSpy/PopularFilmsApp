@@ -1,7 +1,7 @@
 package com.example.popularfilmsapp.di
 
 import com.example.popularfilmsapp.presentation.ui.activities.MainActivity
-import com.example.popularfilmsapp.presentation.ui.fragments.ViewModelFactory
+import com.example.popularfilmsapp.utils.ViewModelFactory
 import dagger.Component
 import javax.inject.Singleton
 

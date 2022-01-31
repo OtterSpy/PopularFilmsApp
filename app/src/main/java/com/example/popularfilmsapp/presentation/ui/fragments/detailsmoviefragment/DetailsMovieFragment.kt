@@ -2,7 +2,6 @@ package com.example.popularfilmsapp.presentation.ui.fragments.detailsmoviefragme
 
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +19,11 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 class DetailsMovieFragment : Fragment() {
+
+    companion object {
+        private const val NUM_STARS = 10
+        private const val STEP_SIZE = 0.1f
+    }
 
     private val args: DetailsMovieFragmentArgs by navArgs()
 
@@ -55,13 +59,10 @@ class DetailsMovieFragment : Fragment() {
         viewModel.actors.observe(viewLifecycleOwner, { actors ->
             when (actors) {
                 is Resource.Failure -> {
-                    Log.d("myLogs", "initObserver: Error")
                 }
                 is Resource.Loading -> {
-                    Log.d("myLogs", "initObserver: Loading")
                 }
                 is Resource.Success -> {
-                    Log.d("myLogs", "initObserver: Success ${actors.data}")
                     actorsAdapter.submitList(actors.data)
                 }
             }
@@ -71,7 +72,6 @@ class DetailsMovieFragment : Fragment() {
 
     private fun getDataList() {
         viewModel.getActors(args.movieItem.id, Constants.API_KEY)
-        Log.d("myLogs", "getDataList: ${args.movieItem.id}")
     }
 
 
@@ -86,7 +86,6 @@ class DetailsMovieFragment : Fragment() {
         binding.detailsTitleTextView.text = args.movieItem.title
         binding.detailsOverviewContentTextView.text = args.movieItem.overview
 
-//        val dateFormatter = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         if (args.movieItem.releaseDate != null && args.movieItem.releaseDate != "") {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val date = LocalDate.parse(
@@ -105,8 +104,8 @@ class DetailsMovieFragment : Fragment() {
         }
 
         with(binding.movieRatingBar) {
-            stepSize = 0.1f
-            numStars = 10
+            stepSize = STEP_SIZE
+            numStars = NUM_STARS
             rating = args.movieItem.voteAverage.toFloat()
         }
         actorsAdapter.setOnClickListener { cast ->
@@ -124,5 +123,4 @@ class DetailsMovieFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
-
 }

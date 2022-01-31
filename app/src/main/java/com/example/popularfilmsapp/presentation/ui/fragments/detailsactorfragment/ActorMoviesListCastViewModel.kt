@@ -1,6 +1,5 @@
 package com.example.popularfilmsapp.presentation.ui.fragments.detailsactorfragment
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,10 +30,6 @@ class ActorMoviesListCastViewModel @Inject constructor(
                             Constants.API_KEY
                         )
                     )
-                )
-                Log.d(
-                    "myLogs",
-                    "getActorFilms: ${getActorMoviesListUseCase(personId, Constants.API_KEY)}"
                 )
             } catch (t: Throwable) {
                 _actorFilms.postValue(
