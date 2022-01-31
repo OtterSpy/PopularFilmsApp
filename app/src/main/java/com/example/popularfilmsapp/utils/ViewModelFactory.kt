@@ -1,4 +1,4 @@
-package com.example.popularfilmsapp.presentation.ui.fragments
+package com.example.popularfilmsapp.utils
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -1,6 +1,5 @@
 package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -12,7 +11,6 @@ import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.a
 import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.holders.ProgressViewHolder
 
 class MovieListAdapter(
-    private val activity: Activity
 ) : PagingDataAdapter<MovieItem, RecyclerView.ViewHolder>(Companion) {
 
     private var onItemClickListener: ((MovieItem) -> Unit)? = null

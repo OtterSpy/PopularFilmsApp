@@ -19,7 +19,7 @@ class MovieLoaderStateAdapter : LoadStateAdapter<ProgressViewHolder>() {
         holder: ProgressViewHolder,
         loadState: LoadState
     ) {
-
+        /* no-op */
     }
 
     override fun onCreateViewHolder(

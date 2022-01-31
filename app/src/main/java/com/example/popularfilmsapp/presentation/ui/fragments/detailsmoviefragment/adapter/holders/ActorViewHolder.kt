@@ -6,7 +6,7 @@ import com.example.popularfilmsapp.R
 import com.example.popularfilmsapp.common.Constants
 import com.example.popularfilmsapp.databinding.HolderActorsItemBinding
 import com.example.popularfilmsapp.domain.model.Cast
-import com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.holders.BaseViewHolder
+import com.example.popularfilmsapp.utils.BaseViewHolder
 
 class ActorViewHolder(binding: HolderActorsItemBinding) :
     BaseViewHolder<HolderActorsItemBinding, Cast>(binding) {

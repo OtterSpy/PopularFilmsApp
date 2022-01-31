@@ -2,7 +2,6 @@ package com.example.popularfilmsapp.presentation.ui.fragments.detailsactorfragme
 
 import android.os.Bundle
 import android.text.SpannableStringBuilder
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.popularfilmsapp.R
 import com.example.popularfilmsapp.common.Constants
+import com.example.popularfilmsapp.common.Constants.NO_DATA
 import com.example.popularfilmsapp.common.Resource
 import com.example.popularfilmsapp.databinding.FragmentDetailsActorBinding
 import com.example.popularfilmsapp.domain.model.ActorDetails
@@ -68,13 +68,10 @@ class DetailsActorFragment : Fragment() {
         viewModelMoviesList.actorFilms.observe(viewLifecycleOwner, { movies ->
             when (movies) {
                 is Resource.Failure -> {
-                    Log.d("myLogs", "initObserverFailure: ")
                 }
                 is Resource.Loading -> {
-                    Log.d("myLogs", "initObserverLoading: ")
                 }
                 is Resource.Success -> {
-                    Log.d("myLogs", "initObserverSuccess: ${movies.data.size}")
                     actorCastAdapter.submitList(movies.data)
                 }
             }
@@ -82,13 +79,10 @@ class DetailsActorFragment : Fragment() {
         viewModelActorDetails.actorDetails.observe(viewLifecycleOwner, { actor ->
             when (actor) {
                 is Resource.Failure -> {
-                    Log.d("myLogs", "initObserverFailureActor: ")
                 }
                 is Resource.Loading -> {
-                    Log.d("myLogs", "initObserverLoadingActor: ")
                 }
                 is Resource.Success -> {
-                    Log.d("myLogs", "initObserverSuccessActor: ${actor.data}")
                     setDataToView(actor.data)
                 }
             }
@@ -120,7 +114,7 @@ class DetailsActorFragment : Fragment() {
                 .bold {
                     append("Birthday: ")
                 }
-                .append("No data")
+                .append(NO_DATA)
         }
         binding.knownForTextView.text = SpannableStringBuilder()
             .bold {
@@ -138,12 +132,12 @@ class DetailsActorFragment : Fragment() {
                 .bold {
                     append("Place of Birthday: ")
                 }
-                .append("No data")
+                .append(NO_DATA)
         }
         if (actor.biography != null && actor.biography != "") {
             binding.biographyContentTextView.text = actor.biography
         } else {
-            binding.biographyContentTextView.text = buildString { append("No Data") }
+            binding.biographyContentTextView.text = buildString { append(NO_DATA) }
         }
     }
 
