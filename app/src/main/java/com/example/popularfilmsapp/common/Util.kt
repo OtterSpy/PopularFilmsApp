@@ -5,7 +5,6 @@ import android.util.TypedValue
 import kotlin.math.roundToInt
 
 object Util {
-
     fun Context.getDp(value: Float): Int = TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
         value,

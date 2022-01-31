@@ -1,4 +1,4 @@
-package com.example.popularfilmsapp.presentation.ui.fragments.movielistfragment.adapter.holders
+package com.example.popularfilmsapp.utils
 
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding

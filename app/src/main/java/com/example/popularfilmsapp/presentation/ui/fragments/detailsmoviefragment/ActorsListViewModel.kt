@@ -1,6 +1,5 @@
 package com.example.popularfilmsapp.presentation.ui.fragments.detailsmoviefragment
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -25,7 +24,6 @@ class ActorsListViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 _actors.postValue(Resource.success(getActorsListUseCase(movieId, apiKey)))
-                Log.d("myLogs", "getActors: ${getActorsListUseCase(movieId, apiKey)}")
             } catch (t: Throwable) {
                 _actors.postValue(
                     Resource.error(

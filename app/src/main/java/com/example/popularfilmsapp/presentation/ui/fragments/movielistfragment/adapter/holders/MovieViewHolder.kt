@@ -4,6 +4,7 @@ import com.bumptech.glide.Glide
 import com.example.popularfilmsapp.common.Constants
 import com.example.popularfilmsapp.databinding.HolderMovieItemBinding
 import com.example.popularfilmsapp.domain.model.MovieItem
+import com.example.popularfilmsapp.utils.BaseViewHolder
 
 class MovieViewHolder(binding: HolderMovieItemBinding) :
     BaseViewHolder<HolderMovieItemBinding, MovieItem>(binding) {
